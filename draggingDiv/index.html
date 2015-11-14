@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>可以拖动的div</title>
+	<link rel="stylesheet" href="style.css" type="text/css">
+	<script src="../crossBrowser/addEvent.js"></script>
+	<script src="demo.js"></script>
+</head>
+<body>
+	<div class="box" id="box">
+		<a href="javascript:;" class="close" id="close">关闭</a>
+		<p>我是可以拖动的！</p>
+	</div>
+	<div class="cover" id="mask" onselectStart="return false"></div>
+	<div class="link">
+		<a href="javascript:;" id="show">点我可以弹出一个框！</a>
+	</div>
+</body>
+</html>

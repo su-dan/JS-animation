@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>带框的拖拽</title>
+	<style>
+		#div1 {
+			width: 200px;
+			height: 200px;
+			background: red;
+			position: absolute;
+		}
+		.box {
+			border: 1px solid #000;
+			position: absolute;
+		}
+	</style>
+	<script src="../crossBrowser/addEvent.js"></script>
+	<script>
+	add.addEvent(window,"load",function() {
+		var oDiv = document.getElementById("div1");
+		//可视窗口的宽度
+		var viewWidth = document.documentElement.clientWidth || document.body.clientHeight;
+		var viewHeight = document.documentElement.clientHeight || document.body.clientHeight;
+		var disX = 0;
+		var disY = 0;
+		var pull = false;//判断是否可拖拽的标记
+
+		add.addEvent(oDiv,"mousedown",function(event) {
+			event = event || window.event;
+			disX = event.clientX - oDiv.offsetLeft;
+			disY = event.clientY - oDiv.offsetTop;
+			pull = true;
+
+			//创建虚线框，bi那个加上样式
+			oBox = document.createElement("div");
+			oBox.className = "box";
+			oBox.style.width = oDiv.offsetWidth-2 + "px";
+			oBox.style.height = oDiv.offsetHeight-2 + "px"; 
+
+			oBox.style.left = oDiv.offsetLeft + "px";
+			oBox.style.top = oDiv.offsetTop + "px";
+
+			document.body.appendChild(oBox);
+
+		});
+		add.addEvent(document,"mousemove",function(event) {
+			event = event || window.event;
+			if(pull == true) {
+				var boxX = event.clientX - disX;
+				var boxY = event.clientY - disY;
+
+				var maxX = viewWidth - oDiv.offsetWidth;
+				var maxY = viewHeight - oDiv.offsetHeight;
+
+				oBox.style.left = Math.min(maxX,Math.max(0,boxX)) + "px";
+				oBox.style.top = Math.min(maxY,Math.max(0,boxY)) + "px";
+			}			
+		});
+		add.addEvent(document,"mouseup",function(event) {
+			pull = false;
+			oDiv.style.left = oBox.offsetLeft + "px";
+			oDiv.style.top = oBox.offsetTop + "px";
+			if(oBox) {
+				document.body.removeChild(oBox);
+			}			
+		});
+	});
+	</script>
+</head>
+<body>
+	<div id="div1"></div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义滚动条</title>
+	<style>
+		#parent {
+			width: 600px;
+			height: 20px;
+			background: #ccc;
+			position: relative;
+			margin: 10px auto;
+		}
+		#div1 {
+			width: 20px;
+			height: 20px;
+			background: green;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		#div2 {
+			position: relative;
+			width: 400px;
+			height: 300px;
+			border: 1px solid #000;
+			overflow: hidden;
+		}
+		#div3 {
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	</style>
+	<script src="../crossBrowser/addEvent.js"></script>
+	<script>
+	add.addEvent(window,"load",function() {
+		var oDiv1 = document.getElementById("div1");
+		var oDiv2 = document.getElementById("div2");
+		var oDiv3 = document.getElementById("div3");
+		var oParent = document.getElementById("parent");
+		var disX = 0;
+		//横向滚动条就去掉所有Y的东西
+		//var disY = 0;
+		var pull = false;//判断是否可拖拽的标记
+
+		add.addEvent(oDiv1,"mousedown",function(event) {
+			event = event || window.event;
+			disX = event.clientX - oDiv1.offsetLeft;
+			pull = true;
+
+		});
+		add.addEvent(document,"mousemove",function(event) {
+			event = event || window.event;
+			if(pull == true) {
+				var boxX = event.clientX - disX;
+				var maxX = oParent.offsetWidth - oDiv1.offsetWidth;
+
+				oDiv1.style.left = Math.min(maxX,Math.max(0,boxX)) + "px";
+			
+				var scale = boxX/(oParent.offsetWidth - oDiv1.offsetWidth);
+				oDiv3.style.top = -scale * (oDiv3.offsetHeight - oDiv2.offsetHeight) + "px";
+				
+			}		
+		});
+		add.addEvent(document,"mouseup",function(event) {
+			pull = false;
+		});
+	});
+	</script>
+</head>
+
+<body>
+	<div id="parent">
+		<div id="div1"></div>
+	</div>
+	<div id="div2">
+		<div id="div3">
+			 闺蜜，这词我也是最近有所耳闻且领悟颇深。遨游于友谊的海洋里，心手相牵，快乐地玩耍，此刻的幸福源于这深厚的情谊，寄语彼此走过的每一天。愿这份美好长久相随，海枯石烂，相守到老！
+
+　　 曾经我不晓得闺蜜的寓意，显然觉得闺蜜二字有些肉麻，也不会轻易的说出口。直到常听闺蜜滔滔不绝地说着我们闺蜜间的知心话，才恍然明白这种自然的默契，敞怀的知心谈心，无话不谈，形影不离，知己般的情谊已经升华为了如今的闺蜜之语。小时候，我们是一起玩过家家的小伙伴，长大后，我们是一起上学的同学，成年后，我们是一起谈天说地的知心人。如今，我们是一起互诉肝肠，知心谈心的好闺蜜。发小的我们经过时间的历练，情谊无与伦比的美丽。
+
+　　 当时间不知跑哪去了的时候，我们依然在一起倾诉琐碎。
+
+　　当毕业各自工作的时候，我们依然联系着彼此，尽管不是经常，偶尔的联系却总有说不完的话。
+
+　　 当逢年过节的时候，总会抽出点时间小聚一会儿，哪怕就是一杯热茶，也要喝个尽兴，聊个热火朝天才肯散去。
+
+　　 当各自有所烦心或欣喜之事，便会第一时间通知并商量对策，或许这就是传说中的闺蜜小暧昧吧！
+
+　　 当到了即将奔三的我们还未找到意中人的时候，闺蜜间的话语便是在默契中帮助彼此，给予安慰，给予意见。没有所谓的追根问底，没有所谓的“严刑逼供”，只是安静地互听彼此的真心倾诉。
+
+　　人海茫茫，遇到彼此，便是一种幸运。闺蜜的世界里有着属于我们闺蜜间的故事，美的与不美的都将是我们青春纪念册里最宝贵的留影。
+
+　　一生的时间，我们还能在一起多久呢？
+
+　　眼看就要奔三了，我们会有自己的家，或许离乡，或许驻地，未来的事谁又能说得准呢？是的，闺蜜当然是一辈子的闺蜜，但是在一起的日子还能有多久呢？
+
+　　 今年，我们二十五岁了，卸下了稚嫩的武装，为了做个有所担当的大人而努力着。从小就腻在一起的闺蜜，为了长大而不得不分离，多么痛的领悟！此别乃不知何日相见？
+
+　　 如果有那么一天，我的好闺蜜们，请记得我们在一起的每一天。走过的胡同，爬过的金鸡山，喝过的井水，都将如最美的经历篇章铭记于心。在一起的时光，记忆深刻里的小片段总会不经意间回放：一起洗过衣服，嬉戏泉水，你洒我我洒向你，清凉于心；一起骑过自行车，你追我赶，你载我我载着你，快乐于心；一起共处一室，温馨如画，你倚着我倚着你，温暖于心。就把那段美好的时光留在彼此的记忆里吧！
+
+　　如果有那么一天，我的好闺蜜们，请记得若我们彼此之间不常联系，但不要断了联系。
+
+　　如果有那么一天，我的好闺蜜们，请记得心烦意乱无处倾诉时，拨通闺蜜之号，我会在那等你，如初般替你分担一些情绪上的小荡漾。
+
+　　 如果有那么一天，我的好闺蜜们，请记得想念彼此时，我们就来个闺蜜小聚会，畅所欲言叙叙旧，小闹一会儿。
+
+　　 如果有那么一天，我的好闺蜜们，请记得不管何时何地，我们都是一辈子的好闺蜜，好姐妹！
+
+　　 敲击键盘，之所以煽情了一小段，是因为二十五六的我们真的不小了，说不定哪天就出嫁了。然而离开了家，我们可以时常回家看看，如若离开了闺蜜，见面的机会就真的很渺茫了……
+
+　　 致我的好闺蜜们，年轻的缩影里有我们稚嫩的笑脸，想念了，不妨看一下天空中翱翔的飞机，夜空中的彗星，如若寂寞了，就读一下孟浩然笔下的春晓……
+
+　　静悄悄的夜，只为倾诉那未知的离殇，速写闺蜜之长久。愿闺蜜时代永常青！
+		</div>
+	</div>
+</body>
+</html>
